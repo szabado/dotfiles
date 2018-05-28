@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 
-source ${HOME}/.dotfiles/bash/colours.sh
+cd ${HOME}/.dotfiles
 
+source bash/colours.sh
+
+FILES=$(find `pwd` -name "install.sh")
+EXCLUDE_FILES=("${HOME}/.dotfiles/install.sh")
+FILES=( "${FILES[@]/$EXCLUDE_FILES}" )
+
+for i in "${FILES[@]}"; do
+	$i
+done
 # todo: add a global force option that overwrites existing things
-# Temporary manual installations until I can automate
-./zsh/install.sh
+
+# ${HOME}/.dotfiles/zsh/install.sh
 
