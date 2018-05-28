@@ -23,3 +23,8 @@ success() {
 unsure() {
 	echo -e "${BLUE}?${NC} $1"
 }
+
+failure() {
+	echo -e "${RED}✖${NC} $1"
+}
+
