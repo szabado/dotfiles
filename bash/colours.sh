@@ -28,3 +28,7 @@ failure() {
 	echo -e "${RED}✖${NC} $1"
 }
 
+# From: http://wiki.bash-hackers.org/snipplets/print_horizontal_line
+divider() {
+	printf '%*s' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+}
