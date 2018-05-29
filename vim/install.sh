@@ -4,5 +4,8 @@ source ${DF_PATH}/bash/helpers.sh
 dst="${HOME}/.vim"
 mkdir -p ${dst}
 
-lnx "${FILEPATH}/groovy.vim" "${dst}/groovy.vim" "Vim Groovy syntax file"
-lnx "${FILEPATH}/vimrc" "${HOME}/.vimrc" ".vimrc file"
+lnx "${FILEPATH}/groovy.vim" "${dst}/groovy.vim" "groovy.vim"
+lnx "${FILEPATH}/vimrc" "${HOME}/.vimrc" ".vimrc"
+lnx "${FILEPATH}/filetype.vim" "${HOME}/.vim/filetype.vim" "filetype.vim"
+lnx "${FILEPATH}/scripts.vim" "${HOME}/.vim/scripts.vim" "scripts.vim"
+
