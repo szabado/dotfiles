@@ -3,7 +3,7 @@
 DF_PATH=${HOME}/.dotfiles
 cd ${DF_PATH}
 
-source bash/colours.sh
+source bash/helpers.sh
 
 FILES=$(find `pwd` -name "install.sh")
 EXCLUDE_FILES=("${DF_PATH}/install.sh")

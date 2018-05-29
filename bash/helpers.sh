@@ -32,3 +32,21 @@ failure() {
 divider() {
 	printf '%*s' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 }
+
+lnx() {
+        target_file=$1
+        link=$2
+        name=$3
+
+        if [[ -L ${link} ]]; then
+                if [[ "$(readlink ${link})" = "${target_file}" ]]; then
+                        success "${name} already linked!"
+                else
+                        failure "${name} already linked to another location"
+                fi
+        elif [[ -f ${link} ]]; then
+                failure "${name}'s location aleady occupied by a regular file"
+        else
+                ln -s ${target_file} ${link} && success "${name} linked successfully!"
+        fi
+}
