@@ -7,7 +7,7 @@ source bash/colours.sh
 
 FILES=$(find `pwd` -name "install.sh")
 EXCLUDE_FILES=("${DF_PATH}/install.sh")
-FILES=( "${FILES[@]/$EXCLUDE_FILES}" )
+FILES=( ${FILES[@]/$EXCLUDE_FILES} )
 
 # todo: add a global force option that overwrites existing things
 for i in "${FILES[@]}"; do
@@ -15,13 +15,5 @@ for i in "${FILES[@]}"; do
 	echo "Running: $i"
 	divider
 	FILEPATH=$(echo $i | xargs dirname) DF_PATH=${DF_PATH} $i 
-	if [[ $? ]]; then
-		divider
-		success "Install succeeded!"
-	else
-		divider
-		failure "Install failed"
-	fi
-	divider
 done
 
