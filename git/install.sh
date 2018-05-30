@@ -11,6 +11,6 @@ git config --global user.name "Felix Jancso-Szabo"
 git config --global url.git@github.com:.insteadOf https://github.com
 git config --global core.exludesfile ~/.gitignore_global
 git config --global push.default simple
-git config --global core.editor /usr/bin/vim
+git config --global core.editor $(which vim)
 
 success "Git config succeeded"
