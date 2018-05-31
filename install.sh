@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
-cd ${HOME}/.dotfiles
+DF_PATH=${HOME}/.dotfiles
+cd ${DF_PATH}
 
-source bash/colours.sh
+source bash/helpers.sh
 
 FILES=$(find `pwd` -name "install.sh")
-EXCLUDE_FILES=("${HOME}/.dotfiles/install.sh")
-FILES=( "${FILES[@]/$EXCLUDE_FILES}" )
+EXCLUDE_FILES=("${DF_PATH}/install.sh")
+FILES=( ${FILES[@]/$EXCLUDE_FILES} )
 
-for i in "${FILES[@]}"; do
-	$i
-done
 # todo: add a global force option that overwrites existing things
-
-# ${HOME}/.dotfiles/zsh/install.sh
+for i in "${FILES[@]}"; do
+	divider
+	echo "Running: $i"
+	divider
+	FILEPATH=$(echo $i | xargs dirname) DF_PATH=${DF_PATH} $i 
+done
 
