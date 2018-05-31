@@ -49,6 +49,14 @@ else
 	os_specific_config=($(find ~/.dotfiles -name "*.zsh" -path "*ubuntu*"))
 fi
 
+for i in ${(M)os_specific_config:#*/path.zsh}; do
+	source ${i}
+done
+
+for i in ${os_specific_config:#*/path.zsh}; do
+	source ${i}
+done
+
 for i in ${config_files:#*/path.zsh}; do
 	source ${i}
 done

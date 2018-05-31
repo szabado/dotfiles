@@ -36,6 +36,10 @@ failure() {
 	echo -e "${RED}✖ $1${NC}"
 }
 
+warn () {
+	echo -e "${YELLOW}⚠ $1${NC}"
+}
+
 info() {
 	echo -e "${DARK_GRAY}  $1${NC}"
 }
@@ -54,37 +58,35 @@ lnx() {
 	target_file=$1
 	link=$2
 
-		skip=false
+	skip=false
 
-	if [[ -f ${link} ]]; then
+	if [[ -e ${link} || -L ${link} ]]; then
 		if [[ "$(readlink ${link})" = "${target_file}" ]]; then
 			success "${link} already linked!"
+			skip=true
 		else
 
-		overwrite=false
-		skip=false
-		user "File already exists: ${link} ($(basename "${target_file}")), what do you want to do?\n\
-		[s]kip, [o]verwrite?"
-		read -n 1 action
-		case "$action" in
-			o )
-				overwrite=true;;
-			s )
-				skip=true;;
-			* )
-				;;
-		esac
+			overwrite=false
+			user "File already exists: ${link} ($(basename "${target_file}")), what do you want to do?\n\
+			[s]kip, [o]verwrite?"
+			read -n 1 action
+			case "$action" in
+				o )
+					overwrite=true;;
+				s )
+					skip=true;;
+				* )
+					warn "invalid input. Skipping"; skip=true;;
+			esac
 
-		if [[ ${overwrite} = "true" ]]; then
-			rm -rf ${link}
+			if [[ ${overwrite} = "true" ]]; then
+				rm -rf ${link}
+				success "deleted old file"
+			fi
 		fi
+	fi
 
-		if [[ ${skip} != "true" ]]; then
-			ln -s "${target_file}" "${link}"
-		fi
-
-		fi
-	else
+	if [[ ${skip} != 'true' ]]; then
 		ln -s ${target_file} ${link} && success "${name} linked successfully!"
 	fi
 }
