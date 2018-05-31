@@ -1,0 +1,42 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+export ZSH=/home/szabado/.oh-my-zsh
+
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="szabado"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+plugins=(git zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+# the git plugin has a LOT of aliases.  Unset them.
+unalias -a
+
+# Configure plugins
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+
+# Manually set the environment language
+export LANG=en_CA.UTF-8
+
+if [[ -f ~/.localrc ]]; then
+	source ~/.localrc
+fi
+
+config_files=($(find ~/.dotfiles/ -name "*.zsh"))
+
+# Load path files
+for i in ${(M)config_files:#*/path.zsh}; do
+	source ${i}
+done
+
+
+for i in ${config_files:#*/path.zsh}; do
+	source ${i}
+done
+
+unset config_files
