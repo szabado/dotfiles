@@ -2,9 +2,9 @@
 
 <schemalist>
 
-	<schema path="/org/gnome/shell/extensions/" id="org.gnome.shell.extensions.user-theme">
+	<schema path="/org/gnome/shell/extensions/user-theme/" id="org.gnome.shell.extensions.user-theme">
 
-    <key name='user-theme' type='s'>
+    <key name='name' type='s'>
       <default>''</default>
       <summary>Theme name</summary>
       <description>

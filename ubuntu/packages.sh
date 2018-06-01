@@ -20,6 +20,7 @@ sudo apt-get --assume-yes install google-chrome-stable libappindicator1
 sudo apt-get --assume-yes install lm-sensors powertop tlp tlp-rdw 
 sudo apt-get --assume-yes install screen
 sudo apt-get --assume-yes install sshfs
+sudo apt-get --assume-yes install tmux
 sudo apt-get --assume-yes install tree
 sudo apt-get --assume-yes install xclip
 sudo apt-get --assume-yes install vlc
