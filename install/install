@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# Installs packages
+
+set -e
+
+cd ${HOME}/.dotfiles
+
+if [[ $(uname) = "Darwin" ]]; then
+	macos/packages.sh
+else
+	ubuntu/packages.sh
+fi
+
+find . -name install.sh | while read installer; do source "${installer}"; done
+
