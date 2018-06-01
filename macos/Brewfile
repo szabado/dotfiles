@@ -1,6 +1,23 @@
-cask_args appdir: "/Applications"
+cask_args appdir: '/Applications'
 
-tap "homebrew/cask"
+tap 'homebrew/bundle'
+tap 'homebrew/cask'
 
-brew install tree
+brew 'bash'
+brew 'go'
+brew 'openssl'
+brew 'python'
+brew 'python@2'
+brew 'readline'
+brew 'ripgrep'
+brew 'tree'
+brew 'unrar'
+brew 'wget'
+brew 'zsh'
 
+cask 'firefox'
+cask 'google-chrome'
+cask 'slack'
+cask 'spotify'
+cask 'sublime-text'
+cask 'vlc'
