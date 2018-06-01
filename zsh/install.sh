@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${DF_PATH}/bash/helpers.sh
+source bash/helpers.sh
 
 dst="${HOME}/.oh-my-zsh/custom/themes"
 mkdir -p ${dst}
