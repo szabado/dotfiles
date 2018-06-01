@@ -3,6 +3,6 @@ filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
 filetype plugin indent on
 syntax on
-set listchars=tab:!·,trail:·
+set listchars=tab:|·,trail:·
 set tabstop=4
 set shiftwidth=4
