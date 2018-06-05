@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source bash/helpers.sh
+source install/helpers
 
 lnx "${DOTFILES_ROOT}/git/gitignore_global" "${HOME}/.gitignore_global"
 

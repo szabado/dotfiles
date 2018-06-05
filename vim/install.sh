@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source ${DOTFILES_ROOT}/bash/helpers.sh
+source install/helpers
+
 dst="${HOME}/.vim"
 mkdir -p ${dst}
 

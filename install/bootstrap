@@ -8,8 +8,7 @@ set -e
 
 cd ${DOTFILES_ROOT}
 
-source bash/helpers.sh
-source bash/helpers.sh
+source install/helpers
 
 install_dotfiles() {
 	info 'installing dotfiles'

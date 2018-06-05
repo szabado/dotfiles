@@ -6,6 +6,9 @@ syntax on
 set listchars=tab:\|·,trail:·
 set tabstop=4
 set shiftwidth=4
+set list
+set number
+set hlsearch
 
 " https://stackoverflow.com/questions/749297/can-i-see-changes-before-i-save-my-file-in-vim
 function! s:DiffWithSaved()
