@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
+set -e
+
 DOTFILES_ROOT="${HOME}/.dotfiles"
 
-${DOTFILES_ROOT}/install/install
-${DOTFILES_ROOT}/install/bootstrap
+install/install
+install/bootstrap
 
 # Configure linux to use oh my zsh.  This should ALWAYS be the last thing in this file.
 if [[ "$(uname)" = "Linux" ]]; then
-	chsh -s `which zsh`
-	sudo shutdown -r 0
+	if [[ prompt "Do you want to restart?" ]]; then
+		chsh -s `which zsh`
+		sudo shutdown -r 0
+	fi
 fi
+

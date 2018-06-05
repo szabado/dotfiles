@@ -167,4 +167,15 @@ link_file () {
 	fi
 }
 
-fi
+prompt() {
+	printf "$1\n"
+	select yn in "Yes" "No"; do
+		case $yn in
+			Yes ) return 0;;
+			No ) return 1;;
+		esac
+	done
+}
+
+fi # end HELPERS_IMPORTED
+
