@@ -13,6 +13,6 @@ fi
 files=$(find . -name install.sh)
 
 for i in "${files[@]}"; do
-	i
+	$i
 done
 
