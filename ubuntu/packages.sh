@@ -49,7 +49,7 @@ sudo apt-get update > /dev/null 2>&1
 installx sublime-text
 
 # install calibre
-wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin > /dev/null 2>&1
+[[ -z "$(which calibre)" ]] && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh 2>/dev/null | sudo sh /dev/stdin > /dev/null 2>&1
 success "Installed calibre"
 
 # install ripgrep

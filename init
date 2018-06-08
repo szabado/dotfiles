@@ -5,6 +5,8 @@ set -e
 DOTFILES_ROOT="${HOME}/.dotfiles"
 cd "${DOTFILES_ROOT}"
 
+source install/helpers
+
 install/install
 install/bootstrap
 
