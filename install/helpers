@@ -57,7 +57,7 @@ divider() {
 lnx() {
 	target_file=$1
 	link=$2
-	name=$(basename "${link}"
+	name=$(basename "${link}")
 
 	skip=false
 
