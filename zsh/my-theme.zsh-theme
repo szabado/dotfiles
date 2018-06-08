@@ -11,8 +11,6 @@ prompt_segment() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-	  echo "$DEFAULT_USER" > ~/test.txt
-	  echo "$USER" >> ~/test.txt
 	  prompt_segment "%{$fg[green]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} "
   fi
 }
