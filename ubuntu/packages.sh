@@ -26,7 +26,6 @@ installx curl
 installx dconf-tools
 installx deluge
 installx firefox
-installx google-chrome-stable libappindicator1
 installx lm-sensors powertop tlp tlp-rdw
 installx screen
 installx sshfs
@@ -34,6 +33,12 @@ installx tmux
 installx tree
 installx xclip
 installx vlc
+
+# install google chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - > /dev/null
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' > /dev/null
+sudo apt-get update > /dev/null
+installx google-chrome-stable
 
 # install sublime text
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - > /dev/null
