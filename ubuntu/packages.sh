@@ -2,6 +2,8 @@
 #
 # The equivalent to the macos brewfile
 
+source install/helpers
+
 set -e
 
 installx() {
