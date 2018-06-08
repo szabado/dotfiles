@@ -87,7 +87,7 @@ lnx() {
 	fi
 
 	if [[ ${skip} != 'true' ]]; then
-		ln -s ${target_file} ${link} && success "${name} linked successfully!"
+		ln -s ${target_file} ${link} && success "${target_file} linked successfully!"
 	fi
 }
 
