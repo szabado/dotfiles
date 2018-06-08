@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 #
-# First time install
-
-export DOTFILES_ROOT="${HOME}/.dotfiles"
+# Installs dotfiles, does a lot of config stuff.
 
 set -e
 
-cd ${DOTFILES_ROOT}
-
 source install/helpers
+
+files=$(find . -name bootstrap.sh)
+
+for i in "${files[@]}"; do
+	$i
+done
 
 install_dotfiles() {
 	info 'installing dotfiles'

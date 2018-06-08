@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# Initializes a computer with packages, bootstraps everything.
+# Supposed to be run to init a fresh computer.
 
 set -e
 
@@ -7,7 +10,12 @@ cd "${DOTFILES_ROOT}"
 
 source install/helpers
 
-install/install
+if [[ $(uname) = "Darwin" ]]; then
+	macos/packages.sh
+else
+	ubuntu/packages.sh
+fi
+
 install/bootstrap
 
 # Configure linux to use oh my zsh.  This should ALWAYS be the last thing in this file.
