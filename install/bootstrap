@@ -8,12 +8,6 @@ DOTFILES_ROOT="$(pwd)"
 
 source install/helpers
 
-files=$(find . -name bootstrap.sh)
-
-for i in "${files[@]}"; do
-	$i
-done
-
 install_dotfiles() {
 	info 'installing dotfiles'
 
@@ -25,10 +19,13 @@ install_dotfiles() {
 
 install_dotfiles
 
-if [[ "$(uname)" = "Darwin" ]]; then
-	:
-# 	source macos/homebrew.sh
-fi
+info "locating supplementary bootstrapping scripts"
+files=$(find . -name bootstrap.sh)
+
+info "running scripts..."
+for i in "${files[@]}"; do
+	$i
+done
 
 info "finished bootstrapping"
 
