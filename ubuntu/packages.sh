@@ -18,7 +18,7 @@ installx git-core
 installx vim
 installx zsh
 # Install oh-my-zsh
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh > /dev/null 2>&1
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - 2>/dev/null | zsh > /dev/null 2>&1
 success "Installed oh-my-zsh"
 
 installx arc-theme
@@ -36,20 +36,20 @@ installx xclip
 installx vlc
 
 # install google chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub 2>/dev/null | sudo apt-key add -  > /dev/null 2>&1
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' > /dev/null 2>&1
 sudo apt-get update > /dev/null 2>&1
 installx google-chrome-stable
 
 # install sublime text
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - 
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg 2>/dev/null | sudo apt-key add -  > /dev/null 2>&1
 installx apt-transport-https
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list > /dev/null 2>&1
+sudo apt-get update > /dev/null 2>&1
 installx sublime-text
-success "Installed sublime text"
 
 # install calibre
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin > /dev/null 2>&1
+wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin > /dev/null 2>&1
 success "Installed calibre"
 
 # install ripgrep
