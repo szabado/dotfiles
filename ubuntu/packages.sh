@@ -5,11 +5,11 @@
 set -e
 
 installx() {
-	installx ${@} > /dev/null && success "Installed ${*}"
+	sudo apt-get --assume-yes install ${@} > /dev/null && success "Installed ${*}"
 }
 
-sudo apt-get --assume-yes update
-sudo apt-get --assume-yes upgrade
+sudo apt-get --assume-yes update > /dev/null
+sudo apt-get --assume-yes upgrade > /dev/null
 
 # install the *required* things first
 installx git-core
