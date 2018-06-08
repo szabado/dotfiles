@@ -63,12 +63,12 @@ lnx() {
 
 	if [[ -e ${link} || -L ${link} ]]; then
 		if [[ "$(readlink ${link})" = "${target_file}" ]]; then
-			success "${link} already linked!"
+			success "${name} already linked!"
 			skip=true
 		else
 
 			overwrite=false
-			user "File already exists: ${link} ($(basename "${target_file}")), what do you want to do?\n\
+			user "File already exists: ${name} ($(basename "${target_file}")), what do you want to do?\n\
 			[s]kip, [o]verwrite?"
 			read -n 1 action
 			case "$action" in
