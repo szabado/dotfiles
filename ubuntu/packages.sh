@@ -34,3 +34,8 @@ sudo apt-get --assume-yes install sublime-text
 
 # install calibre
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
+# install ripgrep
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
+sudo dpkg -i ripgrep_0.8.1_amd64.deb
+
