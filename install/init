@@ -20,8 +20,8 @@ install/bootstrap
 
 # Configure linux to use oh my zsh.  This should ALWAYS be the last thing in this file.
 if [[ "$(uname)" = "Linux" ]]; then
-	if prompt "Do you want to restart?" ; then
-		chsh -s `which zsh`
+	chsh -s $(which zsh)
+	if prompt "Do you want to restart? (Required for everything to work properly)" ; then
 		sudo shutdown -r 0
 	fi
 fi
