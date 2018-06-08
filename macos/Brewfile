@@ -17,6 +17,7 @@ brew 'tree'
 brew 'unrar'
 brew 'wget'
 brew 'zsh'
+brew 'zsh-autosuggestions'
 
 cask 'firefox'
 cask 'iterm2'
