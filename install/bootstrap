@@ -4,6 +4,8 @@
 
 set -e
 
+DOTFILES_ROOT="$(pwd)"
+
 source install/helpers
 
 files=$(find . -name bootstrap.sh)
