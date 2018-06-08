@@ -24,7 +24,7 @@ files=$(find . -name bootstrap.sh)
 
 info "running scripts..."
 for i in "${files[@]}"; do
-	$i
+	$i || failure "script $i did not run properly"
 done
 
 info "finished bootstrapping"
