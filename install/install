@@ -10,5 +10,9 @@ else
 	ubuntu/packages.sh
 fi
 
-find . -name install.sh | while read installer; do source "${installer}"; done
+files=$(find . -name install.sh)
+
+for i in "${files[@]}"; do
+	i
+done
 
