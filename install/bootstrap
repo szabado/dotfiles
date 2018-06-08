@@ -23,8 +23,6 @@ install_dotfiles() {
 	done
 }
 
-git/config.sh
-
 install_dotfiles
 
 if [[ "$(uname)" = "Darwin" ]]; then
