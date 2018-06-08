@@ -9,7 +9,7 @@ dst="${HOME}/.vim"
 
 mkdir -p ${dst}
 
-lnx "${dst}/groovy.vim" "${vim_configs}/groovy.vim"
-lnx "${dst}/filetype.vim" "${vim_configs}/filetype.vim"
-lnx "${dst}/scripts.vim" "${vim_configs}/scripts.vim"
+lnx "${vim_configs}/groovy.vim" "${dst}/groovy.vim"
+lnx "${vim_configs}/filetype.vim" "${dst}/filetype.vim"
+lnx "${vim_configs}/scripts.vim" "${dst}/scripts.vim"
 

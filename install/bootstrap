@@ -23,7 +23,7 @@ info "locating supplementary bootstrapping scripts"
 files=$(find . -name bootstrap.sh)
 
 info "running scripts..."
-for i in "${files[@]}"; do
+for i in ${files[@]}; do
 	$i || failure "script $i did not run properly"
 done
 
