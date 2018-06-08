@@ -2,6 +2,8 @@
 
 source install/helpers
 
+DOTFILES_ROOT="$(pwd)"
+
 lnx "${DOTFILES_ROOT}/git/gitignore_global" "${HOME}/.gitignore_global"
 
 git config --global user.name "Felix Jancso-Szabo"
