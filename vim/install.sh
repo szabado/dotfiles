@@ -2,10 +2,14 @@
 
 source install/helpers
 
+DOTFILES_HOME="$(pwd)"
+
+vim_configs="${DOTFILES_HOME}/vim"
 dst="${HOME}/.vim"
+
 mkdir -p ${dst}
 
-lnx "${FILEPATH}/groovy.vim" "${dst}/groovy.vim" "groovy.vim"
-lnx "${FILEPATH}/filetype.vim" "${HOME}/.vim/filetype.vim" "filetype.vim"
-lnx "${FILEPATH}/scripts.vim" "${HOME}/.vim/scripts.vim" "scripts.vim"
+lnx "${vim_configs}/groovy.vim" "${dst}/groovy.vim"
+lnx "${vim_configs}/filetype.vim" "${dst}/filetype.vim"
+lnx "${vim_configs}/scripts.vim" "${dst}/scripts.vim"
 
