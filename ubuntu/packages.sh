@@ -59,7 +59,7 @@ installx sublime-text
 success "Installed calibre"
 
 # install ripgrep
-if [[ -z "$(which ripgrep)" ]]; then
+if [[ -z "$(which rg)" ]]; then
 	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb > /dev/null 2>&1
 	sudo dpkg -i ripgrep_0.8.1_amd64.deb > /dev/null 2>&1
 	rm -f ripgrep_0.8.1_amd64.deb > /dev/null 2>&1
