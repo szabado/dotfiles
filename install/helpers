@@ -57,6 +57,7 @@ divider() {
 lnx() {
 	target_file=$1
 	link=$2
+	name=$(basename "${link}"
 
 	skip=false
 
@@ -87,7 +88,7 @@ lnx() {
 	fi
 
 	if [[ ${skip} != 'true' ]]; then
-		ln -s ${target_file} ${link} && success "${target_file} linked successfully!"
+		ln -s ${target_file} ${link} && success "${name} linked successfully!"
 	fi
 }
 

@@ -10,7 +10,7 @@ if [[ -z "$(git config --get --global user.email)" ]]; then
 	read -e git_email
 	git config --global user.email "${git_email}"
 fi
-git config --global url.git@github.com:.insteadOf https://github.com
+# git config --global url.git@github.com:.insteadOf https://github.com
 git config --global core.exludesfile ~/.gitignore_global
 git config --global push.default simple
 git config --global core.editor $(which vim)
