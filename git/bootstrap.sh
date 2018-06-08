@@ -8,8 +8,6 @@ set -e
 
 DOTFILES_ROOT="$(pwd)"
 
-lnx "${DOTFILES_ROOT}/git/gitignore_global" "${HOME}/.gitignore_global"
-
 if [[ -z "$(git config --get --global user.name)" ]]; then
 	user 'What is your github nom de plume?'
 	read -e git_name
