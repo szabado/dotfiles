@@ -27,13 +27,23 @@ installx curl
 installx dconf-tools
 installx deluge
 installx firefox
+installx gnome-tweak-tool
+# Install a bunch of power management guff
+# TODO: Configure them
 installx lm-sensors powertop tlp tlp-rdw
+installx ncdu
+installx net-tools
+installx nmap
 installx screen
 installx sshfs
 installx tmux
+installx traceroute
 installx tree
 installx xclip
+installx unrar
+installx virtualbox
 installx vlc
+
 [[ ! -e ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]] && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1
 success "Installed zsh-autosuggestions"
 
