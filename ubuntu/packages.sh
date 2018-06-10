@@ -66,3 +66,15 @@ if [[ -z "$(which rg)" ]]; then
 fi
 success "Installed ripgrep"
 
+# Install speedcrunch
+if [[ -z "$(which speedcrunch)" ]]; then
+	installx speedcrunch
+	if [[ ! -e "/usr/bin/gnome-calculator-original" ]]; then
+		sudo mv /usr/bin/gnome-calculator /usr/bin/gnome-calculator-original
+		sudo ln -s /usr/bin/speedcrunch /usr/bin/gnome-calculator
+		success "Replaced gnome-calculator with speedcrunch"
+	else
+		warn "Cannot link speedcrunch properly: /usr/bin/gnome-calculator-original already exists"
+	fi
+fi
+
