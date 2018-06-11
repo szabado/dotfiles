@@ -10,6 +10,7 @@ set list
 set number
 set hlsearch
 set showcmd
+set backspace=2
 
 " https://stackoverflow.com/questions/749297/can-i-see-changes-before-i-save-my-file-in-vim
 function! s:DiffWithSaved()
