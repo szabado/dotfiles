@@ -98,7 +98,6 @@ running "Linking speedcrunch to keyboard calculator key"
 if [[ "$(readlink '/usr/bin/gnome-calculator')" != "/usr/bin/speedcrunch" ]]; then
 	# todo: fix this so we don't uninstall gnome-calculator if this script is run again
 	lnx "/usr/bin/speedcrunch" "/usr/bin/gnome-calculator"
-	sudo ln -s /usr/bin/speedcrunch /usr/bin/gnome-calculator
 fi
 ok
 
