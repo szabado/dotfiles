@@ -28,7 +28,6 @@ fi
 if [[ -z "$(which subl)" ]]; then
 	running "Adding sublime-text repo"
 	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg 2>/dev/null | sudo apt-key add -  > /dev/null 2>&1
-	installx apt-transport-https
 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list > /dev/null 2>&1
 	ok
 fi
@@ -38,6 +37,7 @@ sudo apt-get --assume-yes update > /dev/null 2>&1; ok
 running "Upgrading packages"
 sudo apt-get --assume-yes upgrade > /dev/null 2>&1; ok
 
+installx apt-transport-https
 installx arc-theme
 installx colordiff
 installx curl

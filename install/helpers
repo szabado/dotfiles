@@ -101,7 +101,7 @@ lnx() {
 		backup "${link}"
 	fi
 
-	ln -s ${target_file} ${link}
+	sudo ln -s ${target_file} ${link}
 }
 
 prompt() {
