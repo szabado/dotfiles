@@ -7,7 +7,8 @@ source install/helpers
 set -e
 
 installx() {
-	sudo apt-get --assume-yes install ${@} > /dev/null 2>&1 && success "Installed ${*}"
+	running "Installing ${*}"
+	sudo apt-get --assume-yes install ${@} > /dev/null 2>&1; ok
 }
 
 #########################
@@ -17,23 +18,25 @@ info "Adding package repositories"
 
 # Google Chrome
 if [[ -z "$(which google-chrome-stable)" ]]; then
+	running "Adding google-chrome-stable repo"
 	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub 2>/dev/null | sudo apt-key add -  > /dev/null 2>&1
 	sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' > /dev/null 2>&1
-	success "Added google chrome"
+	ok
 fi
 
 # Sublime Text
 if [[ -z "$(which subl)" ]]; then
+	running "Adding sublime-text repo"
 	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg 2>/dev/null | sudo apt-key add -  > /dev/null 2>&1
 	installx apt-transport-https
 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list > /dev/null 2>&1
-	success "Added sublime text"
+	ok
 fi
 
-info "Updating package list"
-sudo apt-get --assume-yes update > /dev/null 2>&1
-info "Upgrading packages"
-sudo apt-get --assume-yes upgrade > /dev/null 2>&1
+running "Updating package list"
+sudo apt-get --assume-yes update > /dev/null 2>&1; ok
+running "Upgrading packages"
+sudo apt-get --assume-yes upgrade > /dev/null 2>&1; ok
 
 installx arc-theme
 installx colordiff
@@ -68,35 +71,34 @@ info "Installing other packages"
 
 # Install oh-my-zsh
 # TODO: find a way to check if this is already installed
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - 2>/dev/null | zsh > /dev/null 2>&1
-success "Installed oh-my-zsh"
+running "Installing oh-my-zsh"
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - 2>/dev/null | zsh > /dev/null 2>&1; ok
 
 # Install zsh-autocorrections
-[[ ! -e ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]] && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1
-success "Installed zsh-autosuggestions"
+running "Installing zsh-autosuggestions"
+[[ ! -e ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]] && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1; ok
 
 # Install calibre
-[[ -z "$(which calibre)" ]] && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh 2>/dev/null | sudo sh /dev/stdin > /dev/null 2>&1
-success "Installed calibre"
+running "Installing calibre"
+[[ -z "$(which calibre)" ]] && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh 2>/dev/null | sudo sh /dev/stdin > /dev/null 2>&1; ok
 
 # install ripgrep
+running "Installing ripgrep"
 if [[ -z "$(which rg)" ]]; then
 	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb > /dev/null 2>&1
 	sudo dpkg -i ripgrep_0.8.1_amd64.deb > /dev/null 2>&1
 	rm -f ripgrep_0.8.1_amd64.deb > /dev/null 2>&1
 fi
-success "Installed ripgrep"
+ok
 
 info "Configuring packages"
 
 # Link speedcrunch to keyboard calculator key
+running "Linking speedcrunch to keyboard calculator key"
 if [[ "$(readlink '/usr/bin/gnome-calculator')" != "/usr/bin/speedcrunch" ]]; then
-	if [[ ! -e "/usr/bin/gnome-calculator-original" ]]; then
-		sudo mv /usr/bin/gnome-calculator /usr/bin/gnome-calculator-original
-		sudo ln -s /usr/bin/speedcrunch /usr/bin/gnome-calculator
-		success "Linked speedcrunch to keyboard calculator key"
-	else
-		warn "Cannot link speedcrunch to keyboard: /usr/bin/gnome-calculator-original already exists"
-	fi
+	# todo: fix this so we don't uninstall gnome-calculator if this script is run again
+	lnx "/usr/bin/speedcrunch" "/usr/bin/gnome-calculator"
+	sudo ln -s /usr/bin/speedcrunch /usr/bin/gnome-calculator
 fi
+ok
 
