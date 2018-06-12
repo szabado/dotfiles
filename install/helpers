@@ -2,10 +2,6 @@
 #
 # A bunch of utility functions and variables
 
-if [[ -z "${HELPERS_IMPORTED}" ]]; then
-
-HELPERS_IMPORTED="true"
-
 BLACK='\033[0;30m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -24,28 +20,51 @@ LIGHT_CYAN='\033[1;36m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
-success() {
-	echo -e "${GREEN}✓ $1${NC}"
+fmt() {
+	if [[ -n "${1}" ]]; then
+		echo -en " ${1}"
+	fi
+	echo
 }
 
-unsure() {
-	echo -e "${BLUE}? $1${NC}"
+running() {
+	echo -en "${BLUE}⇒ ${NC} ${1}..."
 }
 
-failure() {
-	echo -e "${RED}✖ $1${NC}"
+ok() {
+	echo -e "${GREEN}[ok]${NC}"
 }
 
 warn () {
-	echo -e "${YELLOW}⚠ $1${NC}"
+	echo -en "${YELLOW}[warn]${NC}"
+	fmt "${1}"
+}
+
+fail() {
+	echo -en "${RED}[fail]${NC}"
+	fmt "${1}"
+	exit 1
 }
 
 info() {
-	echo -e "${DARK_GRAY}  $1${NC}"
+	echo -e "${LIGHT_GRAY}${1}${NC}"
+}
+
+module() {
+	echo -e "\n${LIGHT_GREEN}💀${NC}  ${1}"
+}
+
+finished() {
+	echo -e "${LIGHT_GREEN}😁 All done! No more bare bones for you.${NC}"
 }
 
 user() {
-	echo -e "  $1"
+	userNoNewline "${1}"
+	echo
+}
+
+userNoNewline() {
+	echo -en "${1}"
 }
 
 # From: http://wiki.bash-hackers.org/snipplets/print_horizontal_line
@@ -53,23 +72,39 @@ divider() {
 	printf '%*s' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 }
 
+backup() {
+	backupDir="${HOME}/.dotfiles/.backups"
+	mkdir -p "${backupDir}"
+
+	if [[ $# -ne 1 ]]; then
+		error "Must specify a file to back up"
+		return 1
+	elif [[ "${1}" != /* ]]; then
+		error "Must specify an absolute path for the file to back up"
+		return 1
+	fi
+
+	sudo mkdir -p "${backupDir}$(dirname ${1})"
+	sudo mv "${1}" "${backupDir}${1}"
+}
 
 lnx() {
-	target_file=$1
-	link=$2
+	target_file=${1}
+	link=${2}
 	name=$(basename "${link}")
 
 	skip=false
 
+	running "linking ${name}"
+
 	if [[ -e ${link} || -L ${link} ]]; then
 		if [[ "$(readlink ${link})" = "${target_file}" ]]; then
-			success "${name} already linked!"
 			skip=true
 		else
-
 			overwrite=false
-			user "File already exists: ${name} ($(basename "${target_file}")), what do you want to do?\n\
-			[s]kip, [o]verwrite?"
+			user "File already exists: ${name} ($(basename "${target_file}")), what do you want to do?\n"
+			user "[s]kip, [o]verwrite?"
+			userNoNewline "> "
 			read -n 1 action
 			case "$action" in
 				o )
@@ -82,27 +117,29 @@ lnx() {
 
 			echo
 
-			if [[ ${overwrite} = "true" ]]; then
+			if [[ "${overwrite}" = "true" ]]; then
 				rm -rf ${link}
-				success "deleted old file"
 			fi
 		fi
 	fi
 
-	if [[ ${skip} != 'true' ]]; then
-		ln -s ${target_file} ${link} && success "${name} linked successfully!"
+	if [[ ${skip} = 'false' ]]; then
+		ln -s ${target_file} ${link}
 	fi
+	ok
 }
 
 prompt() {
-	printf "$1\n"
-	select yn in "Yes" "No"; do
-		case $yn in
-			Yes ) return 0;;
-			No ) return 1;;
-		esac
-	done
+	user "${1}"
+	user "[y]es, [n]o"
+	userNoNewline "> "
+	read -n 1 action
+	case "${action}" in
+		[Yy]* )
+			return 0;;
+		[Nn]* )
+			return 1;;
+	esac
+	echo
 }
-
-fi # end HELPERS_IMPORTED
 
