@@ -95,8 +95,6 @@ lnx() {
 
 	skip=false
 
-	running "linking ${name}"
-
 	if [[ -e ${link} ]]; then
 		backup "${link}"
 	fi
@@ -109,13 +107,13 @@ prompt() {
 	user "[y]es, [n]o"
 	userNoNewline "> "
 	read -n 1 action
+	echo
 	case "${action}" in
 		[Yy]* )
 			return 0;;
 		[Nn]* )
 			return 1;;
 	esac
-	echo
 }
 
 err_report() {

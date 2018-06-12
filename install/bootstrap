@@ -15,7 +15,8 @@ install_dotfiles() {
 
 	for src in $(find "${DOTFILES_ROOT}" -name '*.symlink' -not -path '*.git*' -not -path '*.backup*'); do
 		dst="${HOME}/.$(basename ${src%.*})"
-		lnx "${src}" "${dst}"
+		running "Linking $(basename ${dst})"
+		lnx "${src}" "${dst}"; ok
 	done
 }
 
