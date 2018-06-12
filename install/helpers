@@ -97,36 +97,11 @@ lnx() {
 
 	running "linking ${name}"
 
-	if [[ -e ${link} || -L ${link} ]]; then
-		if [[ "$(readlink ${link})" = "${target_file}" ]]; then
-			skip=true
-		else
-			overwrite=false
-			user "File already exists: ${name} ($(basename "${target_file}")), what do you want to do?\n"
-			user "[s]kip, [o]verwrite?"
-			userNoNewline "> "
-			read -n 1 action
-			case "$action" in
-				o )
-					overwrite=true;;
-				s )
-					skip=true;;
-				* )
-					warn "invalid input. Skipping"; skip=true;;
-			esac
-
-			echo
-
-			if [[ "${overwrite}" = "true" ]]; then
-				rm -rf ${link}
-			fi
-		fi
+	if [[ -e ${link} ]]; then
+		backup "${link}"
 	fi
 
-	if [[ ${skip} = 'false' ]]; then
-		ln -s ${target_file} ${link}
-	fi
-	ok
+	ln -s ${target_file} ${link}
 }
 
 prompt() {
@@ -141,5 +116,9 @@ prompt() {
 			return 1;;
 	esac
 	echo
+}
+
+err_report() {
+	echo "Error on line $1"
 }
 

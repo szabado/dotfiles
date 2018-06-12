@@ -8,10 +8,12 @@ DOTFILES_ROOT="$(pwd)"
 
 source install/helpers
 
+trap 'err_report ${LINENO}' ERR
+
 install_dotfiles() {
 	info 'installing dotfiles'
 
-	for src in $(find "${DOTFILES_ROOT}" -name '*.symlink' -not -path '*.git*'); do
+	for src in $(find "${DOTFILES_ROOT}" -name '*.symlink' -not -path '*.git*' -not -path '*.backup*'); do
 		dst="${HOME}/.$(basename ${src%.*})"
 		lnx "${src}" "${dst}"
 	done
@@ -22,10 +24,8 @@ install_dotfiles
 info "locating supplementary bootstrapping scripts"
 files=$(find . -name bootstrap.sh)
 
-info "running scripts..."
 for i in ${files[@]}; do
-	$i || failure "script $i did not run properly"
+	running "Running ${i#./}"
+	$i; ok
 done
-
-info "finished bootstrapping"
 
