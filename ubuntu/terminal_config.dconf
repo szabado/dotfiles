@@ -1,0 +1,20 @@
+[legacy/keybindings]
+close-tab='<Primary><Shift>w'
+close-window='<Primary><Shift>q'
+
+[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+foreground-color='rgb(170,170,170)'
+visible-name='My Default'
+palette=['rgb(0,0,0)', 'rgb(205,0,0)', 'rgb(0,205,0)', 'rgb(205,205,0)', 'rgb(0,67,205)', 'rgb(205,0,205)', 'rgb(0,205,205)', 'rgb(250,235,215)', 'rgb(64,64,64)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(0,56,255)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']
+default-size-rows=24
+use-system-font=false
+use-transparent-background=true
+use-theme-colors=false
+font='monofur for Powerline 15'
+use-theme-transparency=false
+allow-bold=true
+background-color='rgb(0,0,0)'
+background-transparency-percent=18
+
+[legacy]
+schema-version=uint32 3
