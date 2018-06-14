@@ -26,8 +26,10 @@ info "locating supplementary bootstrapping scripts"
 files=$(find . -name bootstrap.sh -not -path '*ubuntu*' -not -path '*macos*')
 
 if [[ "$(uname)" = "Darwin" ]]; then
+	running "Running macos/bootstrap.sh"
 	macos/bootstrap.sh
 else
+	running "Running ubuntu/bootstrap.sh"
 	ubuntu/bootstrap.sh
 fi
 
