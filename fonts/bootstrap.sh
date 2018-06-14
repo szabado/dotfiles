@@ -6,7 +6,11 @@ set -e
 
 source install/helpers
 
-mkdir -p ${HOME}/.fonts
+if [[ "$(uname)" = "Darwin" ]]; then
+	ln -s ~/Library/Fonts ~/.fonts
+else
+	mkdir -p ${HOME}/.fonts
+fi
 
 running "Installing powerline-patched monofur"
 if [[ ! -e "${HOME}/.fonts/monofur_powerline.ttf" ]]; then

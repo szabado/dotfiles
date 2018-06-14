@@ -23,7 +23,10 @@ install_dotfiles() {
 install_dotfiles
 
 info "locating supplementary bootstrapping scripts"
-files=$(find . -name bootstrap.sh -not -path '*ubuntu*' -not -path '*macos*')
+files=$(find . -name bootstrap.sh -not -path '*ubuntu*' -not -path '*macos*' -not -path '*fonts*')
+
+# Needs to be run before the system specific bootstrapping because that configures the terminal to use custom fonts
+fonts/bootstrap.sh
 
 if [[ "$(uname)" = "Darwin" ]]; then
 	module "Running macos/bootstrap.sh"
