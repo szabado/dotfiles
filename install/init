@@ -10,6 +10,8 @@ cd "${DOTFILES_ROOT}"
 
 source install/helpers
 
+trap 'err_report ${LINENO}' ERR
+
 if [[ $(uname) = "Darwin" ]]; then
 	macos/packages.sh
 else
