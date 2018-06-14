@@ -8,3 +8,6 @@ sudo ln -s ${HOME}/.dotfiles/ubuntu/schemas/org.gnome.shell.extensions.user-them
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 dconf load /org/gnome/shell/extensions/ < ${HOME}/.dotfiles/ubuntu/theme_dconf.txt
 
+gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
+gsettings set org.gnome.desktop.wm.preferences theme "Arc-Dark"
+
