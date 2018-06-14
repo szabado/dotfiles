@@ -1,3 +1,3 @@
 export CLICOLOR=1
-LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
