@@ -12,8 +12,10 @@ source install/helpers
 
 if [[ $(uname) = "Darwin" ]]; then
 	macos/packages.sh
+	macos/bootstrap.sh
 else
 	ubuntu/packages.sh
+	ubuntu/bootstrap.sh
 fi
 
 install/bootstrap
