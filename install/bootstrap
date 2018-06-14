@@ -23,7 +23,13 @@ install_dotfiles() {
 install_dotfiles
 
 info "locating supplementary bootstrapping scripts"
-files=$(find . -name bootstrap.sh)
+files=$(find . -name bootstrap.sh -not -path '*ubuntu*' -not -path '*macos*')
+
+if [[ "$(uname)" = "Darwin" ]]; then
+	macos/bootstrap.sh
+else
+	ubuntu/bootstrap.sh
+fi
 
 for i in ${files[@]}; do
 	running "Running ${i#./}"
