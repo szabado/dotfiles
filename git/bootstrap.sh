@@ -33,4 +33,6 @@ running "Configuring git push preferences"
 git config --global push.default simple; ok
 running "Setting core git editor to vim"
 git config --global core.editor $(which vim); ok
+running "Disabling the branch on git branch"
+git config --global pager.branch false; ok
 
