@@ -22,6 +22,8 @@ if [[ ! -e "${HOME}/.fonts/monofur_powerline.ttf" ]]; then
 fi
 ok
 
-running "Rebuilding font cache"
-fc-cache -f -v > /dev/null 2>&1; ok
+if [[ "$(uname)" != "Darwin" ]]; then
+	running "Rebuilding font cache"
+	fc-cache -f -v > /dev/null 2>&1; ok
+fi
 
