@@ -6,19 +6,18 @@ set -e
 
 source install/helpers
 
+fontDir="${HOME}/.fonts"
 if [[ "$(uname)" = "Darwin" ]]; then
-	ln -s ~/Library/Fonts ~/.fonts
-else
-	mkdir -p ${HOME}/.fonts
+	fontDir="${HOME}/Library/Fonts"
 fi
 
 running "Installing powerline-patched monofur"
-if [[ ! -e "${HOME}/.fonts/monofur_powerline.ttf" ]]; then
-	wget -q https://github.com/rsrsl/ttf-monofur-powerline/archive/master.zip -P ~/.fonts
-	unzip -qd ~/.fonts/ ~/.fonts/master.zip
-	mv ~/.fonts/ttf-monofur-powerline-master/*.ttf ~/.fonts
-	rm -r ~/.fonts/ttf-monofur-powerline-master
-	rm ~/.fonts/master.zip
+if [[ ! -e "${fontDir}/monofur_powerline.ttf" ]]; then
+	wget -q https://github.com/rsrsl/ttf-monofur-powerline/archive/master.zip -P "${fontDir}"
+	unzip -qd "${fontDir}" "${fontDir}"/master.zip
+	rm    "${fontDir}"/master.zip
+	mv    "${fontDir}"/ttf-monofur-powerline-master/*.ttf "${fontDir}"
+	rm -r "${fontDir}"/ttf-monofur-powerline-master
 fi
 ok
 
