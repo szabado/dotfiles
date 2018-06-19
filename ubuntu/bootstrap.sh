@@ -12,5 +12,5 @@ gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
 gsettings set org.gnome.desktop.wm.preferences theme "Arc-Dark"
 
 dconf load /org/gnome/terminal/ < ${HOME}/.dotfiles/ubuntu/terminal_config.dconf
-dconf load / < ${HOME}/.dotfiles/ubuntu/favorites.dconf
+dconf load / < ${HOME}/.dotfiles/ubuntu/favourites.dconf
 
