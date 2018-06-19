@@ -46,6 +46,7 @@ installx deluge
 installx firefox
 installx git-core
 installx gnome-tweak-tool
+installx golang-go
 installx google-chrome-stable
 # Install a bunch of power management guff
 # TODO: Configure them
