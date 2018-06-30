@@ -1,8 +1,22 @@
-[legacy/keybindings]
+# NOTE: This is *not* supposed to have comments in it, it's a hacky grep.
+# It removes any lines that have a # preceded by optional whitespace.
+
+# Gnome theme config
+[org/gnome/shell/extensions/user-theme]
+name='Arc-Dark'
+
+[org/gnome/desktop/interface]
+gtk-theme='Arc-Dark'
+
+[org/gnome/desktop/wm/preferences]
+theme='Arc-Dark'
+
+# Terminal config
+[org/gnome/terminal/legacy/keybindings]
 close-tab='<Primary><Shift>w'
 close-window='<Primary><Shift>q'
 
-[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 foreground-color='rgb(170,170,170)'
 visible-name='My Default'
 palette=['rgb(0,0,0)', 'rgb(205,0,0)', 'rgb(0,205,0)', 'rgb(205,205,0)', 'rgb(0,67,205)', 'rgb(205,0,205)', 'rgb(0,205,205)', 'rgb(250,235,215)', 'rgb(64,64,64)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(0,56,255)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']
@@ -16,5 +30,10 @@ allow-bold=true
 background-color='rgb(0,0,0)'
 background-transparency-percent=18
 
-[legacy]
+[org/gnome/terminal/legacy]
 schema-version=uint32 3
+
+# Favourites
+[org/gnome/shell]
+favorite-apps=['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'sublime_text.desktop', 'firefox.desktop', 'org.gnome.Terminal.desktop']
+
