@@ -1,5 +1,5 @@
 alias ll="ls -al"
-alias egrep="egrep --color=always"
+alias egrep="egrep --color=auto"
 
 alias rg="rg -L"
 alias rgS="rg -S"
