@@ -4,6 +4,8 @@
 
 set -e
 
+source install/helpers
+
 gnomeVersion="$(cat /usr/share/gnome/gnome-version.xml | egrep "(platform|minor|micro)" | egrep -o "[0-9]+" | paste -sd "." -)"
 
 user "A gnome plugin needs to be downloaded.  Please select the version for Gnome Version ${gnomeVersion}"
