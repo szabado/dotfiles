@@ -22,3 +22,8 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
+function! s:TabSpaces()
+  set softtabstop=0 expandtab shiftwidth=4 smarttab
+endfunction
+com! TabSpaces call s:TabSpaces()
+
