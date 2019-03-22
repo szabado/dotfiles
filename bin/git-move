@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+if [[ $# -ne 2 ]]; then
+	echo "Usage: git-move [branch to move] [target version/branch]"
+	exit 1
+fi
+
+old="${1}"
+new="${2}"
+archive="${old}-$(date +%s)"
+
+LGRAY='\033[0;37m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+echo -e "${LGRAY}backing up current ${old} branch as ${archive}${NC}"
+git checkout -q "${old}"
+git checkout -q -b "${archive}"
+echo -e "${GREEN}[ok]${NC}"
+
+echo -e "${LGRAY}moving ${old} to ${new}${NC}"
+git branch -q -f "${old}" "${new}"
+echo -e "${GREEN}[ok]${NC}"
+
+echo -e "${LGRAY}checking out ${old}${NC}"
+git checkout -q "${old}"
+echo -e "${GREEN}[ok]${NC}"
+
