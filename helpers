@@ -28,7 +28,7 @@ fmt() {
 }
 
 running() {
-	echo -en "${BLUE}⇒ ${NC} ${1}..."
+	echo -en " ${BLUE}┌[º.º]┐ ⇒ ${NC} ${1}..."
 }
 
 ok() {
@@ -51,11 +51,11 @@ info() {
 }
 
 module() {
-	echo -e "\n${LIGHT_GREEN}💀${NC}  ${1}"
+	echo -e " ${LIGHT_GREEN}┌[º.º]┐${NC} ${1}"
 }
 
 finished() {
-	echo -e "${LIGHT_GREEN}😁 All done! No more bare bones for you.${NC}"
+	echo -e " ${LIGHT_GREEN}┌[º.º]┐ All done! No more bare bones for you.${NC}"
 }
 
 user() {
@@ -93,13 +93,11 @@ lnx() {
 	link=${2}
 	name=$(basename "${link}")
 
-	skip=false
-
 	if [[ -e ${link} ]]; then
 		backup "${link}"
 	fi
 
-	sudo ln -s ${target_file} ${link}
+	ln -s ${target_file} ${link}
 }
 
 prompt() {

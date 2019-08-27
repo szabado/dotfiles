@@ -2,7 +2,7 @@
 #
 # Configure git
 
-source install/helpers
+source helpers
 
 set -e
 
@@ -27,12 +27,12 @@ if prompt "Disable https for git in favour of ssh?"; then
 	running "Disabling https for git"
 	git config --global url.git@github.com:.insteadOf https://github.com; ok
 fi
+
 running "Configuring global gitignore"
 git config --global core.exludesfile ~/.gitignore_global; ok
 running "Configuring git push preferences"
 git config --global push.default simple; ok
 running "Setting core git editor to vim"
 git config --global core.editor $(which vim); ok
-running "Disabling the branch on git branch"
+running "Disabling the pager on git branch"
 git config --global pager.branch false; ok
-
