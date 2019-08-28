@@ -40,3 +40,5 @@ help () {
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
+
+alias pacman-remove-unused="sudo pacman -Rns $(sudo pacman -Qtdq)"
