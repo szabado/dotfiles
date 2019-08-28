@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH=${HOME}/.oh-my-zsh
+export ZSH=/usr/share/oh-my-zsh
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="szabado"
@@ -31,33 +31,10 @@ if [[ -f ~/.localrc ]]; then
 	source ~/.localrc
 fi
 
-
-config_files=($(find ~/.dotfiles/ -name "*.zsh" -not -path "*ubuntu*" -not -path "*macos*"))
+config_files=($(find ~/.dotfiles/ -name "*.zsh"))
 
 # Load path files
-for i in ${(M)config_files:#*/path.zsh}; do
-	source ${i}
-done
-
-os_specific_config=()
-
-if [[ $(uname) = "Darwin" ]]; then
-	# Do mac stuff
-	os_specific_config=($(find ~/.dotfiles -name "*.zsh" -path "*macos*"))
-else
-	# do ubuntu stuff
-	os_specific_config=($(find ~/.dotfiles -name "*.zsh" -path "*ubuntu*"))
-fi
-
-for i in ${(M)os_specific_config:#*/path.zsh}; do
-	source ${i}
-done
-
-for i in ${os_specific_config:#*/path.zsh}; do
-	source ${i}
-done
-
-for i in ${config_files:#*/path.zsh}; do
+for i in ${config_files}; do
 	source ${i}
 done
 

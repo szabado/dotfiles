@@ -14,10 +14,11 @@ trap 'err_report ${LINENO}' ERR
 
 info 'installing dotfiles'
 
-for src in $(find . -name '*.symlink'); do
+# Needs to be DOTFILES_ROOT to get fully qualified paths
+for src in $(find -L "${DOTFILES_ROOT}" -name '*.symlink'); do
 	dst="${HOME}/.$(basename ${src%.*})"
 	running "Linking $(basename ${dst})"
-	# lnx "${src}" "${dst}";
+	lnx "${src}" "${dst}";
 	ok
 done
 

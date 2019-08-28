@@ -4,10 +4,14 @@ source helpers
 
 set -e
 
-running "symlinking oh-my-zsh theme"
+running "symlinking oh-my-zsh theme"; echo "";
+
 dst="${HOME}/.oh-my-zsh/custom/themes"
-info "bla"
 mkdir -p ${dst}
-info "bla"
-lnx "$(pwd)/zsh/my-theme.zsh-theme" "${dst}/szabado.zsh-theme"
+
+user "Manually run sudo ln -s ~/.dotfiles/shell/my-theme.zsh-theme /usr/share/oh-my-zsh/custom/themes/szabado.zsh-theme"
+if ! prompt "did it run successfully?" ; then
+	fail "install failed"
+fi
+
 ok
