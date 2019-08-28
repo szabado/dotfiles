@@ -35,3 +35,8 @@ alias gitb="git branch"
 help () {
 	bash -c "help ${1}"
 }
+
+# Enable reverse search
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
