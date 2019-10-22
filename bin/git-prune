@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-#
-# Prune all upstream branches
-
-git pull --prune
