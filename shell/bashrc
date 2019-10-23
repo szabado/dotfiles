@@ -13,7 +13,10 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 
 	alias pacman-remove-unused='sudo pacman -Rns $(sudo pacman -Qtdq)'
 elif [[ "${OSTYPE}" == "linux-gnueabihf" ]]; then
-	alias cputemp="cat /sys/class/thermal/thermal_zone0/temp"
+	cputemp() {
+		cpu=$(cat /sys/class/thermal/thermal_zone0/temp)
+		echo "$((cpu / 100))" | sed -E "s/([[:digit:]]+)([[:digit:]])/temp=\1.\2'C/"
+	}
 	alias gputemp="vcgencmd measure_temp"
 fi
 
