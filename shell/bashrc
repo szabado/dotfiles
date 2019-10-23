@@ -6,6 +6,7 @@ source "${DIR}/bash-theme.sh"
 export PATH="${PATH}:${DIR}/../bin"
 
 if [[ "${OSTYPE}" == "linux-gnu" ]]; then
+	# Generic Linux Config
 	alias open="xdg-open"
 
 	alias pbcopy='xclip -selection clipboard'
@@ -13,6 +14,7 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 
 	alias pacman-remove-unused='sudo pacman -Rns $(sudo pacman -Qtdq)'
 elif [[ "${OSTYPE}" == "linux-gnueabihf" ]]; then
+	# Raspberry Pi Specific Config
 	cputemp() {
 		cpu=$(cat /sys/class/thermal/thermal_zone0/temp)
 		echo "$((cpu / 100))" | sed -E "s/([[:digit:]]+)([[:digit:]])/temp=\1.\2'C/"
