@@ -2,7 +2,7 @@
 
 source helpers
 
-set -e
+set -Eeuo pipefail
 
 DOTFILES_HOME="$(pwd)"
 
@@ -16,7 +16,7 @@ lnx "${vim_configs}/filetype.vim" "${dst}/filetype.vim"
 lnx "${vim_configs}/scripts.vim" "${dst}/scripts.vim"
 
 running "Installing nerdtree plugin"
-[[ ! -d ~/.vim/pack/vendor/start/nerdtree ]] && git clone https://github.com/scrooloose/nerdtree.git ~/.vim/pack/vendor/start/nerdtree -q
+git clone https://github.com/scrooloose/nerdtree.git ~/.vim/pack/vendor/start/nerdtree -q
 pushd ~/.vim/pack/vendor/start/nerdtree >/dev/null
 git pull -q
 popd > /dev/null
