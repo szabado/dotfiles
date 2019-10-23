@@ -4,6 +4,13 @@ source ~/.dotfiles/helpers
 
 source ~/.dotfiles/shell/gitstatus/gitstatus.prompt.sh
 
+# Colours in the shell prompt need to have backslashed [ and ] characters around them to
+# prevent affecting the length of the prompt
+GREEN="\[${GREEN}\]"
+YELLOW="\[${YELLOW}\]"
+PURPLE="\[${PURPLE}\]"
+NC="\[${NC}\]"
+
 shopt -s promptvars
 
 PS_INFO="${GREEN}\u${NC} at ${YELLOW}\h${NC} in ${PURPLE}[\w]${NC}"

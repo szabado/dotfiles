@@ -12,6 +12,10 @@ source helpers
 
 trap 'err_report ${LINENO}' ERR
 
+info 'cloning submodules'
+
+git submodule update --init --recursive --progress
+
 info 'installing dotfiles'
 
 # Needs to be DOTFILES_ROOT to get fully qualified paths
