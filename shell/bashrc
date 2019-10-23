@@ -12,6 +12,9 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 	alias pbpaste='xclip -selection clipboard -o'
 
 	alias pacman-remove-unused='sudo pacman -Rns $(sudo pacman -Qtdq)'
+elif [[ "${OSTYPE}" == "linux-gnueabihf" ]]; then
+	alias cputemp="cat /sys/class/thermal/thermal_zone0/temp"
+	alias gputemp="vcgencmd measure_temp"
 fi
 
 alias ll="ls -al"
