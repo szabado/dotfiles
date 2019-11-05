@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source helpers
+source helpers.sh
 
 set -Eeuo pipefail
 

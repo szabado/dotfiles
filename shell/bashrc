@@ -27,7 +27,7 @@ alias la="ls -a"
 
 alias egrep="egrep --color=auto"
 
-alias reload!="source ~/.bashrc"
+alias reload="source ~/.bashrc"
 
 alias gits="git status"
 alias gitd="git diff"
@@ -36,6 +36,8 @@ alias gitb="git branch"
 
 alias wdiff="wdiff -n -w $'\033[30;41m' -x $'\033[0m' -y $'\033[30;42m' -z $'\033[0m'"
 
+alias gen-ctags="ctags -R -f ./.git/tags ."
+
 export CLICOLOR=1
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export PATH="${PATH}:${HOME}/.dotfiles/bin"
@@ -43,3 +45,7 @@ export GOPATH="${HOME}/repos/go"
 export PATH="${PATH}:${GOPATH}/bin"
 
 export JQ_COLORS="1;37:0;39:0;39:0;39:0;32:1;39:1;39"
+
+# enable Ctrl+S i-search
+stty -ixon
+

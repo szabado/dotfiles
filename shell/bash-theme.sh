@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/.dotfiles/helpers
+source ~/.dotfiles/helpers.sh
 
 source ~/.dotfiles/shell/gitstatus/gitstatus.prompt.sh
 

@@ -8,7 +8,7 @@ set -e
 DOTFILES_ROOT="${HOME}/.dotfiles"
 cd "${DOTFILES_ROOT}"
 
-source helpers
+source helpers.sh
 
 trap 'err_report ${LINENO}' ERR
 

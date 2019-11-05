@@ -31,3 +31,10 @@ function! s:TabSpaces()
 endfunction
 com! TabSpaces call s:TabSpaces()
 
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright

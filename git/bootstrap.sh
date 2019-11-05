@@ -2,7 +2,7 @@
 #
 # Configure git
 
-source helpers
+source helpers.sh
 
 set -e
 
