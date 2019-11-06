@@ -15,52 +15,35 @@ lnx "${vim_configs}/groovy.vim" "${dst}/groovy.vim"
 lnx "${vim_configs}/filetype.vim" "${dst}/filetype.vim"
 lnx "${vim_configs}/scripts.vim" "${dst}/scripts.vim"
 
-install_dir="${HOME}/.vim/pack/vendor/start/nerdtree"
-if [[ ! -d "${install_dir}" ]]; then
-	running "Installing nerdtree plugin"
-	git clone https://github.com/scrooloose/nerdtree.git "${install_dir}" -q
-else
-	running "Updating nerdtree plugin"
-	pushd "${install_dir}" >/dev/null
-	git pull -q
-	popd > /dev/null
-fi
-vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
-ok
+function install_plugin() {
+	if [[ $# -ne 3 ]]; then
+		fail "install_plugin has the incorrect number of arguments"
+		return 1
+	fi
 
-install_dir="${HOME}/.vim/pack/plugins/start/kotlin-vim"
-if [[ ! -d "${install_dir}" ]]; then
-	running "Installing kotlin plugin"
-	git clone https://github.com/udalov/kotlin-vim.git "${install_dir}" -q
-else
-	running "Updating kotlin plugin"
-	pushd "${install_dir}" >/dev/null
-	git pull -q
-	popd > /dev/null
-fi
-ok
+	name="${1}"
+	repo="${2}"
+	install_dir="${3}"
 
-install_dir="${HOME}/.vim/pack/plugins/start/vim-tmux"
-if [[ ! -d "${install_dir}" ]]; then
-	running "Installing tmux.conf plugin"
-	git clone git://github.com/tmux-plugins/vim-tmux.git "${install_dir}" -q
-else
-	running "Updating tmux.conf plugin"
-	pushd "${install_dir}" >/dev/null
-	git pull -q
-	popd > /dev/null
-fi
-ok
+	if [[ ! -d "${install_dir}" ]]; then
+		running "Installing ${name} plugin"
+		git clone "${repo}" "${install_dir}" -q
+	else
+		running "Updating ${name} plugin"
+		pushd "${install_dir}" >/dev/null
+		git pull -q
+		popd > /dev/null
+	fi
+	ok
+}
 
-install_dir="${HOME}/.vim/pack/plugins/start/vim-tmux-navigator"
-if [[ ! -d "${install_dir}" ]]; then
-	running "Installing Vim-Tmux navigator plugin"
-	git clone git@github.com:christoomey/vim-tmux-navigator.git "${install_dir}" -q
-else
-	running "Updating Vim-Tmux navigator plugin"
-	pushd "${install_dir}" > /dev/null
-	git pull -q
-	popd > /dev/null
+plugins_base_dir="${HOME}/.vim/pack/plugins"
+if prompt "Delete all existing Vim plugins"; then
+	rm -rf "${plugins_base_dir}"
 fi
-ok
+
+autoload_plugin_dir="${plugins_base_dir}/start"
+install_plugin "NERDTree" "https://github.com/scrooloose/nerdtree.git" "${autoload_plugin_dir}/nerdtree"
+install_plugin "tmux.conf" "git://github.com/tmux-plugins/vim-tmux.git" "${autoload_plugin_dir}/tmux-conf-syntax"
+install_plugin "Vim-Tmux Navigator" "git@github.com:christoomey/vim-tmux-navigator.git" "${autoload_plugin_dir}/vim-tmux-navigator"
 

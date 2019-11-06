@@ -77,10 +77,10 @@ backup() {
 	mkdir -p "${backupDir}"
 
 	if [[ $# -ne 1 ]]; then
-		error "Must specify a file to back up"
+		fail "Must specify a file to back up"
 		return 1
 	elif [[ "${1}" != /* ]]; then
-		error "Must specify an absolute path for the file to back up"
+		fail "Must specify an absolute path for the file to back up"
 		return 1
 	fi
 
