@@ -122,3 +122,24 @@ err_report() {
 	echo "Error on line $1"
 }
 
+function clone_or_pull() {
+	if [[ $# -ne 3 ]]; then
+		fail "cloneOrPull has the incorrect number of arguments"
+		return 1
+	fi
+
+	name="${1}"
+	repo="${2}"
+	install_dir="${3}"
+
+	if [[ ! -d "${install_dir}" ]]; then
+		running "Installing ${name}"
+		git clone "${repo}" "${install_dir}" -q
+	else
+		running "Updating ${name}"
+		pushd "${install_dir}" >/dev/null
+		git pull -q
+		popd > /dev/null
+	fi
+	ok
+}

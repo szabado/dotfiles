@@ -2,7 +2,7 @@
 
 source ~/.dotfiles/helpers.sh
 
-source ~/.dotfiles/shell/gitstatus/gitstatus.prompt.sh
+source ~/.gitstatus/gitstatus.prompt.sh
 
 # Colours in the shell prompt need to have backslashed [ and ] characters around them to
 # prevent affecting the length of the prompt
