@@ -28,3 +28,4 @@ bind C-l send-keys 'C-l'
 # Enable mouse mode (tmux 2.1 and above)
 set -g mouse on
 
+set-option -g history-limit 10000
