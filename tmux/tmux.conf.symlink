@@ -29,3 +29,4 @@ bind C-l send-keys 'C-l'
 set -g mouse on
 
 set-option -g history-limit 10000
+set-window-option -g mode-keys vi
