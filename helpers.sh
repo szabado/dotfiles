@@ -115,6 +115,8 @@ prompt() {
 			return 0;;
 		[Nn]* )
 			return 1;;
+		* )
+			return 1;;
 	esac
 }
 
