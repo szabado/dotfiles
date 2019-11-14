@@ -15,7 +15,7 @@ trap 'err_report ${LINENO}' ERR
 info 'installing dotfiles'
 
 # Needs to be DOTFILES_ROOT to get fully qualified paths
-for src in $(find -L "${DOTFILES_ROOT}" -name '*.symlink'); do
+for src in $(find -L "${DOTFILES_ROOT}" -name '*.symlink' | sort); do
 	dst="${HOME}/.$(basename ${src%.*})"
 	running "Linking $(basename ${dst})"
 	lnx "${src}" "${dst}";
@@ -24,7 +24,7 @@ done
 
 info "running bootstrapping scripts"
 
-for strapper in $(find . -name bootstrap.sh); do
+for strapper in $(find . -name bootstrap.sh | sort); do
 	module "Running ${strapper#./}"
 	$strapper
 done
