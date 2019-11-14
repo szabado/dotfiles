@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+# Delete branches that have been merged to master, excluding master and the current branch.
+git branch --merged | grep -v "master" | grep -v "$(git rev-parse --abbrev-ref HEAD)" | xargs -n 1 git branch -d
+
+# Prune refs that no longer exist that have been pulled from origin
+git remote prune origin
+
