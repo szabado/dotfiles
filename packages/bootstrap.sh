@@ -4,6 +4,9 @@ set -Eeuo pipefail
 
 source ./helpers.sh
 
+# TODO: Fix this, it's broken right now
+exit 0
+
 info "installing your tools"
 
 goIsInstalled="$(command -v go)"
