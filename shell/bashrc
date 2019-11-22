@@ -27,7 +27,36 @@ alias la="ls -a"
 
 alias egrep="egrep --color=auto"
 
-alias reload="source ~/.bashrc"
+function reload() {
+	# clear all aliases
+	unalias -a
+
+	if [[ $# -eq 0 ]]; then
+		source ~/.bashrc
+		return
+	fi
+
+	if [[ $1 != "--pull" ]]; then
+		echo "Unknown flag $1"
+		source ~/.bashrc
+		return
+	else
+		echo "pulling"
+	fi
+
+	cd ~/.dotfiles
+	orig="$(git stash list | wc -l)"
+	git stash -u
+	if [[ "$(git stash list | wc -l)" != "${orig}" ]]; then
+		echo "Stashed uncommitted changes:"
+		git stash show
+	fi
+
+	git checkout master
+	git pull
+	./init
+	source ~/.bashrc
+}
 
 alias gits="git status"
 alias gitd="git diff"
