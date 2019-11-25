@@ -78,3 +78,6 @@ export JQ_COLORS="1;37:0;39:0;39:0;39:0;32:1;39:1;39"
 # enable Ctrl+S i-search
 stty -ixon
 
+# disable history substitution
+set +H
+
