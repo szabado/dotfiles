@@ -29,7 +29,7 @@ fi
 # fi
 
 running "Configuring global gitignore"
-git config --global core.exludesfile ~/.gitignore_global; ok
+git config --global core.excludesfile ~/.gitignore_global; ok
 running "Configuring git push preferences"
 git config --global push.default simple; ok
 running "Setting core git editor to vim"
