@@ -1,8 +1,10 @@
 # split panes using | and -
 unbind '"'
 unbind %
-bind '"' split-window -h
-bind '%' split-window -v
+
+# https://unix.stackexchange.com/questions/12032/how-to-create-a-new-window-on-the-current-directory-in-tmux/12091
+bind '"' split-window -h -c '#{pane_current_path}'
+bind '%' split-window -v -c '#{pane_current_path}'
 
 # reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.tmux.conf
