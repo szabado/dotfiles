@@ -80,3 +80,21 @@ export JQ_COLORS="1;37:0;39:0;39:0;39:0;32:1;39:1;39"
 # enable Ctrl+S i-search
 stty -ixon
 
+# shared history & other history tweaks (https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows)
+
+# Avoid duplicates
+HISTCONTROL=ignoredups:erasedups
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
+
+# reedit a history substitution line if it failed
+shopt -s histreedit
+
+# verify each command before running it
+shopt -s histverify
+
+# After each command, append to the history file and reread it
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+HISTSIZE=100000
+HISTFILESIZE=100000
+
