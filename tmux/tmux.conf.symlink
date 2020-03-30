@@ -35,3 +35,7 @@ set-window-option -g mode-keys vi
 
 # from https://stackoverflow.com/questions/36815879/tmux-copy-mouse-selected-text-to-clipboard-automatically-on-mouse-release
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
+
+# send the prefix to client inside window
+bind-key -n C-S-b send-prefix
+
