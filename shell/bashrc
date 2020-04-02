@@ -33,6 +33,14 @@ function reload() {
 	# clear all aliases
 	unalias -a
 
+	# reload history
+	history -a
+	history -c
+	history -r
+
+	# reset the terminal to sane values
+	stty sane
+
 	if [[ $# -eq 0 ]]; then
 		source ~/.bashrc
 		return
@@ -94,7 +102,8 @@ shopt -s histreedit
 shopt -s histverify
 
 # After each command, append to the history file and reread it
-# PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
-HISTSIZE=100000
-HISTFILESIZE=100000
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a"
+HISTSIZE="-1"
+HISTFILESIZE="-1"
+HISTTIMEFORMAT="%F %T: "
 
