@@ -108,3 +108,23 @@ HISTSIZE="-1"
 HISTFILESIZE="-1"
 HISTTIMEFORMAT="%F %T: "
 
+function man_page_exists() {
+	/usr/bin/man ${1} </dev/null &>/dev/null
+}
+
+function man() {
+	if [[ $# -eq 0 ]]; then
+		/usr/bin/man
+		return
+	fi
+
+	for item in ${@}; do
+		if man_page_exists "${item}"; then
+			/usr/bin/man "${item}"
+		elif command -v "${item}"; then
+			"${item}" --help 2>&1 | less -c
+		else
+			/usr/bin/man "${item}"
+		fi
+	done
+}
