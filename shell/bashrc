@@ -128,3 +128,8 @@ function man() {
 		fi
 	done
 }
+
+# OpenMP Directives (ECE 459)
+export OMP_NUM_THREADS=4
+# end OpenMP Directives
+
