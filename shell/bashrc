@@ -41,6 +41,9 @@ function reload() {
 	# reset the terminal to sane values
 	stty sane
 
+	# reload inputrc: https://superuser.com/questions/419670/how-do-i-reload-inputrc-using-a-bash-script/419676
+	bind -f ~/.inputrc
+
 	if [[ $# -eq 0 ]]; then
 		source ~/.bashrc
 		return

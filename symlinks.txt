@@ -1,3 +1,4 @@
 tmux/tmux.conf
 vim/vimrc
 git/gitignore_global
+shell/inputrc
