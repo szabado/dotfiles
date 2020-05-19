@@ -12,21 +12,21 @@ source helpers.sh
 
 trap 'err_report ${LINENO}' ERR
 
-info 'installing dotfiles'
+header 'installing dotfiles'
 
-# Needs to be DOTFILES_ROOT to get fully qualified paths
-for src in $(cat "${DOTFILES_ROOT}/symlinks.txt"); do
+for src in $(cat "./symlinks.txt"); do
 	dst="${HOME}/.$(basename ${src})"
 	running "Linking $(basename ${dst})"
 	lnx "${DOTFILES_ROOT}/${src}" "${dst}"
 	ok
 done
 
-info "running bootstrapping scripts"
+log "running bootstrapping scripts"
 
-for strapper in $(find . -name bootstrap.sh | sort); do
-	module "Running ${strapper#./}"
-	$strapper
+for bootstrapper in $(find . -name bootstrap.sh | sort); do
+	# Strip the leading ./ for a cleaner display
+	header "Running ${bootstrapper#./}"
+	"${bootstrapper}"
 done
 
-finished
+header "All done! No more bare bones for you."
