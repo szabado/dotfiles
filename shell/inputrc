@@ -7,6 +7,7 @@ set completion-prefix-display-length 3
 set mark-symlinked-directories On
 set show-all-if-ambiguous On
 set show-all-if-unmodified On
+set bell-style none
 
 # Delete word with Ctrl+Backspace
 "\C-H":"\C-W"
