@@ -3,4 +3,5 @@
 *.swo
 .idea
 .DS_Store
+.venv
 
