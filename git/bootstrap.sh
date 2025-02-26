@@ -36,3 +36,14 @@ running "Setting core git editor to vim"
 git config --global core.editor $(which vim); ok
 running "Disabling the pager on git branch"
 git config --global pager.branch false; ok
+
+if grep -q 'path = ~/.dotfiles/git/gitconfig' ~/.gitconfig; then
+	running "~/.gitconfig already imports ~/.dotfiles/git/gitconfig"; ok
+else
+	running "Importing ~/.dotfiles/git/gitconfig into ~/.gitconfig"
+	cat >> ~/.gitconfig << EOF
+[include]
+	path = ~/.dotfiles/git/gitconfig
+EOF
+	ok
+fi
